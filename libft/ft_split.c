@@ -6,7 +6,7 @@
 /*   By: mli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 15:00:32 by mli               #+#    #+#             */
-/*   Updated: 2019/10/18 00:48:40 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/12 14:58:32 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		w_len(char const *s, char c)
 	return (len + 1);
 }
 
-static char		**ft_malloc_w_len(char const *s, char c, char **result)
+static int		ft_malloc_w_len(char const *s, char c, char **result)
 {
 	int i;
 	int j;
@@ -51,11 +51,11 @@ static char		**ft_malloc_w_len(char const *s, char c, char **result)
 		}
 		if (s[i - 1] != c)
 			if (!(result[j++] = (char *)malloc(sizeof(char) * (len + 1))))
-				return (NULL);
+				return (j - 1);
 	}
 	if (!(result[j] = (char *)malloc(sizeof(char))))
-		return (NULL);
-	return (result);
+		return (j);
+	return (-1);
 }
 
 static char		**ft_tab_filled(char const *s, char c, char **result)
@@ -82,14 +82,18 @@ static char		**ft_tab_filled(char const *s, char c, char **result)
 
 char			**ft_split(char const *s, char c)
 {
+	int		err;
 	char	**result;
 
-	if (s != NULL)
+	err = -1;
+	if (s)
 	{
-		if (!(result = (char **)malloc(sizeof(char *) * w_len(s, c))))
-			return (NULL);
-		if ((result = ft_malloc_w_len(s, c, result)))
-			return (ft_tab_filled(s, c, result));
+		if ((result = (char **)malloc(sizeof(char *) * w_len(s, c))))
+			if ((err = ft_malloc_w_len(s, c, result)) < 0)
+				return (ft_tab_filled(s, c, result));
+		while (err >= 0)
+			free(result[err--]);
+		free(result);
 	}
 	return (NULL);
 }
