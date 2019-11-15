@@ -6,7 +6,7 @@
 #    By: mli <mli@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 11:11:01 by mli               #+#    #+#              #
-#    Updated: 2019/11/12 13:30:18 by mli              ###   ########.fr        #
+#    Updated: 2019/11/15 18:25:04 by mli              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT = ./libft/libft.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -L./libft -lft
 
 SRCS_FILES = test.c
 
