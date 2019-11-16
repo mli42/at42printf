@@ -6,8 +6,19 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2019/11/15 16:12:30 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/16 20:30:12 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_printf(const char *str, ...)
+{
+	va_list ap;
+	int	a;
+
+	va_start(ap, str);
+	a = va_arg(ap, int);
+	va_end(ap);
+	return (a);
+}

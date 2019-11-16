@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2019/11/15 16:43:17 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/16 20:26:10 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include "./libft/libft.h"
+int		ft_printf(const char *, ...);
 
 #endif
