@@ -6,12 +6,11 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 23:33:41 by mli               #+#    #+#             */
-/*   Updated: 2019/11/15 14:32:32 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/18 13:18:03 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
 int		result_size(long int nb, long int base_len)
 {
