@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2019/11/19 18:06:53 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/20 17:02:57 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int		ft_found(const char *str, int *i, int *to_return, va_list ap)
 	(void)ap;
 	(void)to_return;
 
-	printf("\nFlags:%c\n", (args->flags > 0 ? args->flags : 'N'));
+/*	printf("\nFlags:%c\n", (args->flags > 0 ? args->flags : 'N'));
 	printf("Width:%d\n", args->width);
 	printf("Precision:%d\n", args->precision);
-	printf("Convert:%c\n", args->type);
+	printf("Convert:%c\n", args->type); */
 
 
 	free(args);

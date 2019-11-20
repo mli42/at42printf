@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2019/11/19 17:21:31 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/20 17:13:22 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ typedef struct	s_printf
 	char	type;
 }				t_printf;
 
-int		ft_printf(const char *, ...);
+int				ft_printf(const char *str, ...);
 
-int		ft_is_handled(const char *str, int *i);
-int		ft_small_atoi(const char *str, int *i);
-char	ft_flags(const char *str, int *i);
-int		ft_precision(const char *str, int *i);
+int				ft_is_handled(const char *str, int *i);
+int				ft_small_atoi(const char *str, int *i);
+char			ft_flags(const char *str, int *i);
+int				ft_precision(const char *str, int *i);
 
-char	*ft_convert(char *base, long int nbr);
+char			*ft_convert(char *base, long int nbr);
 
 #endif
