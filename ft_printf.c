@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2019/11/20 17:02:57 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/21 14:33:31 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ int		ft_found(const char *str, int *i, int *to_return, va_list ap)
 		free(args);
 		return (-1);
 	}
-	if (args->precision == 0)
-	{
-		free(args);
-		return (1);
-	}
 	// result = ft_result(va_list ap);
 	// to_return += ft_strlen(result);
 	(void)result;
@@ -45,8 +40,22 @@ int		ft_found(const char *str, int *i, int *to_return, va_list ap)
 /*	printf("\nFlags:%c\n", (args->flags > 0 ? args->flags : 'N'));
 	printf("Width:%d\n", args->width);
 	printf("Precision:%d\n", args->precision);
-	printf("Convert:%c\n", args->type); */
+	printf("Convert:%c\n", args->type);*/
 
+/*	if (args->type == 'c')
+		result = ft_is_c(to_return, args, va_arg(ap, char);
+	else if (args->type == 's')
+		result = ft_is_s(to_return, args, va_arg(ap, char *);
+	else if (args->type == 'p')
+		result = ft_is_p(to_return, args, va_arg(ap, void *);
+	else if (args->type == 'd') || (args->type == 'i')
+		result = ft_is_di(to_return, args, va_arg(ap, long int);
+	else if (args->type == 'u')
+		result = ft_is_u(to_return, args, va_arg(ap, unsigned long int);
+	else if ((args->type == 'x') || (args->type == 'X'))
+		result = ft_is_x(to_return, args, va_arg(ap, unsigned long int);
+	else if (args->type == '%')
+		result = ft_is_percent(to_return, args);*/
 
 	free(args);
 	return (1);
