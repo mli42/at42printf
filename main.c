@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:46:50 by mli               #+#    #+#             */
-/*   Updated: 2019/11/21 11:56:37 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/21 17:05:13 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		main(void)
 	(void)returned;
 	(void)returned1;
 
-	returned = ft_printf("12345%00-06.4d\n", -15);
-//	returned1= printf("%s\n", r);
+	returned = ft_printf("12345%00-06.4c\n", '\0');
+//	returned1= printf("%-1c\n", 'r');
 	printf("and returns: %d\n", returned);
 //	printf("and returns1: %d\n", returned1);
 	return (0);

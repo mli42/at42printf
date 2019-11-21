@@ -6,53 +6,76 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/21 14:33:19 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/21 17:06:58 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_is_c(int *to_return, t_printf *args, char c);
-char	*ft_is_s(int *to_return, t_printf *args, char *str);
-char	*ft_is_p(int *to_return, t_printf *args, void *str);
-char	*ft_is_di(int *to_return, t_printf *args, long int d);
-char	*ft_is_u(int *to_return, t_printf *args, unsigned long int u);
-char	*ft_is_x(int *to_return, t_printf *args, unsigned long int x);
-char	*ft_is_percent(int *to_return, t_printf *args);
-
-
-
-char	*ft_is_c(int *to_return, t_printf *args, char c)
+unsigned long int	power(int x, int puissance)
 {
+	int i;
+	long int r;
 
+	i = 0;
+	r = 1;
+	while (i++ < puissance)
+		r *= x;
+	return (r);
 }
 
-char	*ft_is_s(int *to_return, t_printf *args, char *str)
+int		ft_is_c(int *to_return, t_printf *args, int c)
+{
+	int		i;
+	char	flags;
+
+	i = -1;
+	flags = ' ';
+	c %= power(2, ((int)sizeof(unsigned char) * 8));
+	if (args->flags == '-')
+		write(1, &c, 1);
+	if (args->flags == '0')
+		flags = '0';
+	while (++i < args->width - 1)
+		write(1, &flags, 1);
+	if (args->flags != '-')
+		write(1, &c, 1);
+	*to_return += i + 1;
+	return (1);
+}
+/*
+int		ft_is_s(int *to_return, t_printf *args, char *str)
 {
 
+	return (0);
 }
 
-char	*ft_is_p(int *to_return, t_printf *args, void *str)
+int		ft_is_p(int *to_return, t_printf *args, void *str)
 {
 
+	return (0);
 }
 
-char	*ft_is_di(int *to_return, t_printf *args, long int d)
+int		ft_is_di(int *to_return, t_printf *args, long int d)
 {
 
+	return (0);
 }
 
-char	*ft_is_u(int *to_return, t_printf *args, unsigned long int u)
+int		ft_is_u(int *to_return, t_printf *args, unsigned long int u)
 {
 
+	return (0);
 }
 
-char	*ft_is_x(int *to_return, t_printf *args, unsigned long int x)
+int		ft_is_x(int *to_return, t_printf *args, unsigned long int x)
 {
 
+	return (0);
 }
 
-char	*ft_is_percent(int *to_return, t_printf *args)
+int		ft_is_percent(int *to_return, t_printf *args)
 {
 
-}
+	return (0);
+}*/
