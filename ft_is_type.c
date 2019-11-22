@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/22 12:40:18 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/22 13:32:59 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int		ft_is_c(int *to_return, t_printf *args, int c)
 	return (1);
 }
 
-#include <stdio.h>
-
 int		ft_is_s(int *to_return, t_printf *args, char *str)
 {
 	int		i;
@@ -55,28 +53,20 @@ int		ft_is_s(int *to_return, t_printf *args, char *str)
 
 	i = 0;
 	len = 0;
-	max = 0;
-	flags = ' ';
+	flags = (args->flags == '0' ? '0' : ' ');
 	if (!str)
 		str = "(null)";
 	while (str[len] && (args->precision < 0 || args->precision > len))
 		len++;
-	printf("%d\n%s\n", len, str);
-	(void)to_return;
 	max = (args->width > len ? args->width : len);
-
-	while (args->flags == '-' && i < len)
-		write(1, &str[i++], 1);
-	if (args->flags == '0')
-		flags = '0';
-	while (i < max - len)
-	{
+	if (args->flags == '-')
+		write(1, &str[0], len);
+	while(i++ < max - len)
 		write(1, &flags, 1);
-		i++;
-	}
-	while (args->flags != '-' && i < max)
-		write(1, &str[i++], 1);
-	return (0);
+	if (args->flags != '-')
+		write(1, &str[0], len);
+	*to_return += max;
+	return (1);
 }
 /*
 int		ft_is_p(int *to_return, t_printf *args, void *str)
