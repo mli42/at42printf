@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/21 17:06:58 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/22 12:40:18 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,42 @@ int		ft_is_c(int *to_return, t_printf *args, int c)
 	*to_return += i + 1;
 	return (1);
 }
-/*
+
+#include <stdio.h>
+
 int		ft_is_s(int *to_return, t_printf *args, char *str)
 {
+	int		i;
+	int		len;
+	int		max;
+	char	flags;
 
+	i = 0;
+	len = 0;
+	max = 0;
+	flags = ' ';
+	if (!str)
+		str = "(null)";
+	while (str[len] && (args->precision < 0 || args->precision > len))
+		len++;
+	printf("%d\n%s\n", len, str);
+	(void)to_return;
+	max = (args->width > len ? args->width : len);
+
+	while (args->flags == '-' && i < len)
+		write(1, &str[i++], 1);
+	if (args->flags == '0')
+		flags = '0';
+	while (i < max - len)
+	{
+		write(1, &flags, 1);
+		i++;
+	}
+	while (args->flags != '-' && i < max)
+		write(1, &str[i++], 1);
 	return (0);
 }
-
+/*
 int		ft_is_p(int *to_return, t_printf *args, void *str)
 {
 
