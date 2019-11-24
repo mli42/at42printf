@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/22 13:32:59 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/24 10:30:09 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,29 @@ int		ft_is_s(int *to_return, t_printf *args, char *str)
 	*to_return += max;
 	return (1);
 }
+
+#include <stdio.h>
+
+int		ft_is_x(int *to_return, t_printf *args, long int x)
+{
+	char	*base;
+	char	*result;
+
+	(void)to_return;
+	x %= power(2, ((int)sizeof(unsigned long int) * 8));
+	base = (args->type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef");
+	if (!(result = ft_convert(base, x)))
+		return (-1);
+
+//	printf("%s\n", result);
+
+	free(result);
+	return (1);
+}
 /*
 int		ft_is_p(int *to_return, t_printf *args, void *str)
 {
-
-	return (0);
+	return (ft_is_x(to_return, args, (unsigned long int)str));
 }
 
 int		ft_is_di(int *to_return, t_printf *args, long int d)
@@ -87,11 +105,6 @@ int		ft_is_u(int *to_return, t_printf *args, unsigned long int u)
 	return (0);
 }
 
-int		ft_is_x(int *to_return, t_printf *args, unsigned long int x)
-{
-
-	return (0);
-}
 
 int		ft_is_percent(int *to_return, t_printf *args)
 {
