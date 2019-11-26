@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 17:17:59 by mli               #+#    #+#             */
-/*   Updated: 2019/11/19 17:18:52 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/26 16:26:10 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,20 @@ int		ft_is_handled(const char *str, int *i)
 	return (-1);
 }
 
-int		ft_small_atoi(const char *str, int *i)
+int		ft_small_atoi(const char *str, int *i, va_list ap, t_printf *args)
 {
-	int result;
+	long int result;
 
+	if (str[*i] == '*')
+	{
+		(*i)++;
+		if ((result = va_arg(ap, int)) < 0)
+		{
+			result *= -1;
+			args->flags = '-';
+		}
+		return ((int)result);
+	}
 	result = ((str[*i] >= '0' && str[*i] <= '9') ? 0 : -1);
 	while (str[*i] >= '0' && str[*i] <= '9')
 		result = (10 * result) + str[(*i)++] - '0';
@@ -52,7 +62,7 @@ char	ft_flags(const char *str, int *i)
 	return (result);
 }
 
-int		ft_precision(const char *str, int *i)
+int		ft_precision(const char *str, int *i, va_list ap, t_printf *args)
 {
 	int result;
 
@@ -60,8 +70,7 @@ int		ft_precision(const char *str, int *i)
 	if (str[*i] == '.')
 	{
 		(*i)++;
-		result = ft_small_atoi(str, i);
-		if (result == -1)
+		if ((result = ft_small_atoi(str, i, ap, args)) == -1)
 			result = 0;
 	}
 	return (result);

@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/24 10:30:09 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/26 11:47:43 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ int		ft_is_s(int *to_return, t_printf *args, char *str)
 
 #include <stdio.h>
 
-int		ft_is_x(int *to_return, t_printf *args, long int x)
+int		ft_is_x(int *to_return, t_printf *args, unsigned long int x)
 {
 	char	*base;
 	char	*result;
 
 	(void)to_return;
-	x %= power(2, ((int)sizeof(unsigned long int) * 8));
+	x %= power(2, ((int)sizeof(unsigned int) * 8));
 	base = (args->type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef");
 	if (!(result = ft_convert(base, x)))
 		return (-1);

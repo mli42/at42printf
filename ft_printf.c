@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2019/11/24 10:29:59 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/26 16:38:47 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int		ft_found(const char *str, int *i, int *to_return, va_list ap)
 		return (-1);
 	(*i)++;
 	args->flags = ft_flags(str, i);
-	args->width = ft_small_atoi(str, i);
-	args->precision = ft_precision(str, i);
+	args->width = ft_small_atoi(str, i, ap, args);
+	args->precision = ft_precision(str, i, ap, args);
 	if ((args->type = ft_is_handled(str, i)) < 0)
 	{
 		free(args);
@@ -50,7 +50,7 @@ int		ft_found(const char *str, int *i, int *to_return, va_list ap)
 	else if (args->type == 's')
 		result = ft_is_s(to_return, args, va_arg(ap, char *));
 	else if ((args->type == 'x') || (args->type == 'X'))
-		result = ft_is_x(to_return, args, va_arg(ap, long int));
+		result = ft_is_x(to_return, args, va_arg(ap, unsigned long int));
 /*	else if (args->type == 'p')
 		result = ft_is_p(to_return, args, va_arg(ap, void *));
 	else if ((args->type == 'd') || (args->type == 'i'))
@@ -87,7 +87,7 @@ int		ft_printf(const char *str, ...)
 			to_return += write(1, &str[i - j], j);
 		if (str[i] == '%')
 			if (!(ft_found(str, &i, &to_return, ap)))
-				return (to_return == -1);
+				to_return = -1;
 	}
 	va_end(ap);
 	return (to_return);

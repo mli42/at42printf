@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2019/11/20 17:13:22 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/26 16:25:55 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ typedef struct	s_printf
 int				ft_printf(const char *str, ...);
 
 int				ft_is_handled(const char *str, int *i);
-int				ft_small_atoi(const char *str, int *i);
+int				ft_small_atoi(const char *str, int *i,
+		va_list ap, t_printf *args);
 char			ft_flags(const char *str, int *i);
-int				ft_precision(const char *str, int *i);
+int				ft_precision(const char *str, int *i,
+		va_list ap, t_printf *args);
 
 char			*ft_convert(char *base, long int nbr);
 
