@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/26 19:42:25 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/26 23:12:00 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,28 +71,21 @@ int					ft_is_s(int *to_return, t_printf *args, char *str)
 
 #include <stdio.h>
 
-int				ft_is_x(int *to_return, t_printf *args, unsigned long int x)
+void			ft_is_x2(t_printf *args, int len, int max, char *res)
 {
 	int		i;
-	char	*res;
+	int		res_len;
 	char	flags;
-	int		len;
-	int		max;
 
 	i = 0;
+	res_len = ft_strlen(res);
 	flags = (args->flags == '0' ? '0' : ' ');
 	flags = (args->precision >= 0 ? ' ' : flags);
-	if (!(res = ft_convert((args->type == 'X' ? "0123456789ABCDEF" :
-		"0123456789abcdef"), x % power(2, ((int)sizeof(unsigned int) * 8)))))
-		return (-1);
-	len = (args->precision > ft_strlen(res) ? args->precision : ft_strlen(res));
-	max = (args->width > len ? args->width : len);
-	*to_return += max;
 	if (args->flags == '-')
 	{
-		while (i++ < len - ft_strlen(res))
+		while (i++ < len - res_len)
 			write(1, "0", 1);
-		write(1, res, ft_strlen(res));
+		write(1, res, res_len);
 	}
 	i = 0;
 	while (i++ < max - len)
@@ -100,10 +93,27 @@ int				ft_is_x(int *to_return, t_printf *args, unsigned long int x)
 	i = 0;
 	if (args->flags != '-')
 	{
-		while (i++ < len - ft_strlen(res))
+		while (i++ < len - res_len)
 			write(1, "0", 1);
-		write(1, res, ft_strlen(res));
+		write(1, res, res_len);
 	}
+}
+
+int				ft_is_x(int *to_return, t_printf *args, unsigned long int x)
+{
+	int		len;
+	int		max;
+	int		res_len;
+	char	*res;
+
+	if (!(res = ft_convert((args->type == 'X' ? "0123456789ABCDEF" :
+		"0123456789abcdef"), x % power(2, ((int)sizeof(unsigned int) * 8)))))
+		return (-1);
+	res_len = ft_strlen(res);
+	len = (args->precision > (res_len) ? args->precision : (res_len));
+	max = (args->width > len ? args->width : len);
+	*to_return += max;
+	ft_is_x2(args, len, max, res);
 	free(res);
 	return (1);
 }
