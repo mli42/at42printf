@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:46:50 by mli               #+#    #+#             */
-/*   Updated: 2019/11/26 16:36:53 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/26 19:43:16 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int		main(void)
 	(void)returned;
 	(void)returned1;
 
-	returned = ft_printf("what %*s up\n", -2147483648, r);
+//	returned = ft_printf("what %*s up\n", -2147483648, r);
 //	returned1 = printf("%--d\n", 1);
-//	returned1 = printf("%*d\n", -2147483648, 5);
-	returned1 = printf("what %*s up\n", -2147483648, r);
+	returned = ft_printf("%20.15X\n", 2147483647);
+	returned1 = printf("%20.15X\n", 2147483647);
 	printf("Mine: %d\n", returned);
 	printf("True: %d\n", returned1);
 	return (0);

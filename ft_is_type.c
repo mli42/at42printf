@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/26 11:47:43 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/26 19:42:25 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 unsigned long int	power(int x, int puissance)
 {
-	int i;
-	long int r;
+	int			i;
+	long int	r;
 
 	i = 0;
 	r = 1;
@@ -24,7 +24,7 @@ unsigned long int	power(int x, int puissance)
 	return (r);
 }
 
-int		ft_is_c(int *to_return, t_printf *args, int c)
+int					ft_is_c(int *to_return, t_printf *args, int c)
 {
 	int		i;
 	char	flags;
@@ -44,7 +44,7 @@ int		ft_is_c(int *to_return, t_printf *args, int c)
 	return (1);
 }
 
-int		ft_is_s(int *to_return, t_printf *args, char *str)
+int					ft_is_s(int *to_return, t_printf *args, char *str)
 {
 	int		i;
 	int		len;
@@ -61,7 +61,7 @@ int		ft_is_s(int *to_return, t_printf *args, char *str)
 	max = (args->width > len ? args->width : len);
 	if (args->flags == '-')
 		write(1, &str[0], len);
-	while(i++ < max - len)
+	while (i++ < max - len)
 		write(1, &flags, 1);
 	if (args->flags != '-')
 		write(1, &str[0], len);
@@ -71,20 +71,40 @@ int		ft_is_s(int *to_return, t_printf *args, char *str)
 
 #include <stdio.h>
 
-int		ft_is_x(int *to_return, t_printf *args, unsigned long int x)
+int				ft_is_x(int *to_return, t_printf *args, unsigned long int x)
 {
-	char	*base;
-	char	*result;
+	int		i;
+	char	*res;
+	char	flags;
+	int		len;
+	int		max;
 
-	(void)to_return;
-	x %= power(2, ((int)sizeof(unsigned int) * 8));
-	base = (args->type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef");
-	if (!(result = ft_convert(base, x)))
+	i = 0;
+	flags = (args->flags == '0' ? '0' : ' ');
+	flags = (args->precision >= 0 ? ' ' : flags);
+	if (!(res = ft_convert((args->type == 'X' ? "0123456789ABCDEF" :
+		"0123456789abcdef"), x % power(2, ((int)sizeof(unsigned int) * 8)))))
 		return (-1);
-
-//	printf("%s\n", result);
-
-	free(result);
+	len = (args->precision > ft_strlen(res) ? args->precision : ft_strlen(res));
+	max = (args->width > len ? args->width : len);
+	*to_return += max;
+	if (args->flags == '-')
+	{
+		while (i++ < len - ft_strlen(res))
+			write(1, "0", 1);
+		write(1, res, ft_strlen(res));
+	}
+	i = 0;
+	while (i++ < max - len)
+		write(1, " ", 1);
+	i = 0;
+	if (args->flags != '-')
+	{
+		while (i++ < len - ft_strlen(res))
+			write(1, "0", 1);
+		write(1, res, ft_strlen(res));
+	}
+	free(res);
 	return (1);
 }
 /*
@@ -104,7 +124,6 @@ int		ft_is_u(int *to_return, t_printf *args, unsigned long int u)
 
 	return (0);
 }
-
 
 int		ft_is_percent(int *to_return, t_printf *args)
 {

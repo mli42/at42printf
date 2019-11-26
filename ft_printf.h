@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2019/11/26 16:25:55 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/26 18:50:39 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int				ft_precision(const char *str, int *i,
 		va_list ap, t_printf *args);
 
 char			*ft_convert(char *base, long int nbr);
+int				ft_strlen(const char *str);
 
 #endif

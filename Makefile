@@ -6,7 +6,7 @@
 #    By: mli <mli@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 11:11:01 by mli               #+#    #+#              #
-#    Updated: 2019/11/22 09:26:42 by mli              ###   ########.fr        #
+#    Updated: 2019/11/26 18:50:14 by mli              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS_FILES = ft_printf.c ft_argsfill.c ft_convert_base.c ft_is_type.c
+SRCS_FILES = ft_printf.c ft_argsfill.c ft_convert_base.c ft_is_type.c utils.c
 
 OBJS = ${SRCS_FILES:.c=.o}
 
