@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/27 09:51:09 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/27 11:15:51 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,12 @@ int				ft_is_x(int *to_return, t_printf *args, unsigned long int x)
 	free(res);
 	return (1);
 }
-/*
+
 int		ft_is_p(int *to_return, t_printf *args, void *str)
 {
 	return (ft_is_x(to_return, args, (unsigned long int)str));
 }
-
+/*
 int		ft_is_di(int *to_return, t_printf *args, long int d)
 {
 
