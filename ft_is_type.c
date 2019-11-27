@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/26 23:12:00 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/27 09:51:09 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void			ft_is_x2(t_printf *args, int len, int max, char *res)
 	}
 	i = 0;
 	while (i++ < max - len)
-		write(1, " ", 1);
+		write(1, &flags, 1);
 	i = 0;
 	if (args->flags != '-')
 	{

@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 17:17:59 by mli               #+#    #+#             */
-/*   Updated: 2019/11/26 16:26:10 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/27 10:37:50 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,13 @@ int		ft_precision(const char *str, int *i, va_list ap, t_printf *args)
 	if (str[*i] == '.')
 	{
 		(*i)++;
-		if ((result = ft_small_atoi(str, i, ap, args)) == -1)
+		if (str[*i] == '*')
+		{
+			(*i)++;
+			if ((result = va_arg(ap, int)) < 0)
+				result = -1;
+		}
+		else if ((result = ft_small_atoi(str, i, ap, args)) == -1)
 			result = 0;
 	}
 	return (result);
