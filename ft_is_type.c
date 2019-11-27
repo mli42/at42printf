@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/27 11:15:51 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/27 16:12:26 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,27 @@ int				ft_is_x(int *to_return, t_printf *args, unsigned long int x)
 
 int		ft_is_p(int *to_return, t_printf *args, void *str)
 {
-	return (ft_is_x(to_return, args, (unsigned long int)str));
+	int		i;
+	int		len;
+	int		max;
+	char	*res;
+
+	if (!(res = ft_convert("0123456789abcdef", (unsigned long int)str)))
+		return (-1);
+	len = ft_strlen(res) + 2;
+	max = (args->width > len ? args->width : len);
+	*to_return += max;
+	if (args->flags == '-')
+		if (write(1, "0x", 2))
+			write(1, res, len - 2);
+	i = 0;
+	while (i++ < max - len)
+		write(1, " ", 1);
+	if (args->flags != '-')
+		if (write(1, "0x", 2))
+			write(1, res, len - 2);
+	free(res);
+	return (1);
 }
 /*
 int		ft_is_di(int *to_return, t_printf *args, long int d)

@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:13:17 by mli               #+#    #+#             */
-/*   Updated: 2019/11/27 11:20:51 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/27 17:15:17 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,15 @@ int		main(void)
 	printf("\n%d", ft_printf("%0*.*X\n", -20, -15, 2147483647));
 	printf("\n%d", ft_printf("%*.*X\n", -20, 15, -2147483647));
 	printf("\n%d", ft_printf("%*.*X\n", -20, 15, -1));
-
-
 */
+	//				%p	 		//
+	int	a = 5;
+	(void)a;
+/*	printf("\n%d", ft_printf("%p\n", &a));
+	printf("\n%d", ft_printf("%20p\n", &a));
+	printf("\n%d", ft_printf("%-20p\n", &a));
+*/
+
 //	printf("%d\n", -2147483648);
 //	printf("%.0005d\n", 132);
 	return (0);
