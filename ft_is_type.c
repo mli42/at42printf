@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/27 16:12:26 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/28 10:04:58 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int					ft_is_s(int *to_return, t_printf *args, char *str)
 	flags = (args->flags == '0' ? '0' : ' ');
 	if (!str)
 		str = "(null)";
-	while (str[len] && (args->precision < 0 || args->precision > len))
+	while ((args->precision < 0 || args->precision > len) && str[len])
 		len++;
 	max = (args->width > len ? args->width : len);
 	if (args->flags == '-')
