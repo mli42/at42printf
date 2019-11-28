@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/28 10:04:58 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/28 11:56:19 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,53 @@ int		ft_is_p(int *to_return, t_printf *args, void *str)
 	free(res);
 	return (1);
 }
-/*
-int		ft_is_di(int *to_return, t_printf *args, long int d)
-{
 
-	return (0);
+void			ft_is_di2(t_printf *args, int len, int max, char *res)
+{
+	int		i;
+	int		res_len;
+	char	flags;
+
+	i = 0;
+	res_len = ft_strlen(res);
+	flags = (args->flags == '0' ? '0' : ' ');
+	flags = (args->precision >= 0 ? ' ' : flags);
+	if (args->flags == '-')
+	{
+		while (i++ < len - res_len)
+			write(1, "0", 1);
+		write(1, res, res_len);
+	}
+	i = 0;
+	while (i++ < max - len)
+		write(1, &flags, 1);
+	i = 0;
+	if (args->flags != '-')
+	{
+		while (i++ < len - res_len)
+			write(1, "0", 1);
+		write(1, res, res_len);
+	}
 }
 
+int		ft_is_di(int *to_return, t_printf *args, long int d)
+{
+	int		len;
+	int		max;
+	int		res_len;
+	char	*res;
+
+	if (!(res = ft_convert("0123456789", d % power(2, (int)sizeof(int) * 8))))
+		return (-1);
+	res_len = ft_strlen(res);
+	len = (args->precision > (res_len) ? args->precision : (res_len));
+	max = (args->width > len ? args->width : len);
+	*to_return += max;
+	ft_is_di2(args, len, max, res);
+	free(res);
+	return (1);
+}
+/*
 int		ft_is_u(int *to_return, t_printf *args, unsigned long int u)
 {
 

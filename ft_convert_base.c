@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 23:33:41 by mli               #+#    #+#             */
-/*   Updated: 2019/11/18 13:18:03 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/28 11:55:27 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_convert(char *base, long int nbr)
 	char		*result;
 
 	i = 0;
-	base_len = 16;
+	base_len = ft_strlen(base);
 	size = result_size(nbr, base_len);
 	if (!(result = (char *)malloc(sizeof(char) * size)))
 		return (NULL);

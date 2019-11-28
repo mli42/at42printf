@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2019/11/27 11:14:51 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/28 11:53:13 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int		ft_found(const char *str, int *i, int *to_return, va_list ap)
 		result = ft_is_x(to_return, args, va_arg(ap, unsigned long int));
 	else if (args->type == 'p')
 		result = ft_is_p(to_return, args, va_arg(ap, void *));
-/*	else if ((args->type == 'd') || (args->type == 'i'))
+	else if ((args->type == 'd') || (args->type == 'i'))
 		result = ft_is_di(to_return, args, va_arg(ap, long int));
-	else if (args->type == 'u')
+/*	else if (args->type == 'u')
 		result = ft_is_u(to_return, args, va_arg(ap, unsigned long int));
 	else if (args->type == '%')
 		result = ft_is_percent(to_return, args);*/
