@@ -6,15 +6,15 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/29 11:59:38 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/29 18:15:19 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-unsigned long int   power_of_2(int y)
+unsigned long int	power_of_2(int y)
 {
-    return ((unsigned long int)1 << y);
+	return ((unsigned long int)1 << y);
 }
 
 int					ft_is_c(int *to_return, t_printf *args, int c)
@@ -64,7 +64,7 @@ int					ft_is_s(int *to_return, t_printf *args, char *str)
 
 #include <stdio.h>
 
-void			ft_is_x2(t_printf *args, int len, int max, char *res)
+void				ft_is_x2(t_printf *args, int len, int max, char *res)
 {
 	int		i;
 	int		res_len;
@@ -92,7 +92,7 @@ void			ft_is_x2(t_printf *args, int len, int max, char *res)
 	}
 }
 
-int				ft_is_x(int *to_return, t_printf *args, unsigned long int x)
+int					ft_is_x(int *to_return, t_printf *args, unsigned long int x)
 {
 	int		len;
 	int		max;
@@ -111,7 +111,7 @@ int				ft_is_x(int *to_return, t_printf *args, unsigned long int x)
 	return (1);
 }
 
-int		ft_is_p(int *to_return, t_printf *args, void *str)
+int					ft_is_p(int *to_return, t_printf *args, void *str)
 {
 	int		i;
 	int		len;
@@ -136,7 +136,7 @@ int		ft_is_p(int *to_return, t_printf *args, void *str)
 	return (1);
 }
 
-void			ft_is_di2(t_printf *args, int max, char *res, long int d)
+void				ft_is_di2(t_printf *args, int max, char *res, long int d)
 {
 	int			i;
 	int			len;
@@ -162,33 +162,39 @@ void			ft_is_di2(t_printf *args, int max, char *res, long int d)
 		write(1, res, res_len);
 }
 
-int		ft_is_di(int *to_return, t_printf *args, int d)
+int					ft_is_di(int *to_return, t_printf *args, int d)
 {
-	int		len;
-	int		max;
-	int		res_len;
-	char	*res;
+	int			len;
+	int			max;
+	int			res_len;
+	char		*res;
 
+	len = 0;
+	if (d == 0 && args->precision == 0)
+		while (len++ < args->width)
+			if (write(1, " ", 1) && ++(*to_return) && len == args->width)
+				return (1);
 	if (d == 0 && args->precision == 0)
 		return (1);
-	if (!(res = ft_convert("0123456789", (unsigned long int)(d >= 0 ? d : -d))))
+	if (!(res = ft_convert("0123456789",
+					(unsigned long int)d * (d >= 0 ? 1 : -1))))
 		return (-1);
 	res_len = ft_strlen(res);
 	len = (args->precision > (res_len) ? args->precision : (res_len));
 	max = (args->width > len ? args->width : len);
-	*to_return += max;
+	*to_return += max + (d >= 0 ? 0 : 1);
 	ft_is_di2(args, (d >= 0 ? max : max - 1), res, d);
 	free(res);
 	return (1);
 }
 /*
-int		ft_is_u(int *to_return, t_printf *args, unsigned long int u)
+int					ft_is_u(int *to_return, t_printf *args, unsigned long int u)
 {
 
 	return (0);
 }
 
-int		ft_is_percent(int *to_return, t_printf *args)
+int					ft_is_percent(int *to_return, t_printf *args)
 {
 
 	return (0);

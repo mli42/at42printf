@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:13:17 by mli               #+#    #+#             */
-/*   Updated: 2019/11/29 11:59:06 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/29 18:34:12 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@ int		main(void)
 	printf("\n%d", ft_printf("Just printing ok : %c and %c !", 'o', 'k'));
 */	//				%s				//
 	char r[] = {'1', '2', '3', '4', '5', '\0'};
+	char r2[] = {'1', '2', '3', '4', '5'};
 	(void)r;
+	(void)r2;
 /*	printf("\n%d", ft_printf("%s", r));
 	printf("\n%d", ft_printf("%.s", r));
 	printf("\n%d", ft_printf("%.0s", r));
 	printf("\n%d", ft_printf("%.3s", r));
+	printf("\n%d", ft_printf("%.3s", r2));
 	printf("\n%d", ft_printf("%.30s", r));
 	printf("\n%d", ft_printf("%30.3s\n", r));
 	printf("\n%d", ft_printf("%30.s\n", r));
@@ -56,6 +59,7 @@ int		main(void)
 	printf("\n%d", ft_printf("%x\n", 123456));
 	printf("\n%d", ft_printf("%.3x\n", 123456));
 	printf("\n%d", ft_printf("%3x\n", 123456));
+	printf("\n%d", ft_printf("%020.15x\n", -2147483647 - 1));
 */
 	//				%p	 		//
 	int	a = 5;
@@ -64,6 +68,21 @@ int		main(void)
 	printf("\n%d", ft_printf("%20p\n", &a));
 	printf("\n%d", ft_printf("%-20p\n", &a));
 */
+	//			%d				//
+	printf("\n%d", ft_printf("%020.15d\n", -1));
+	printf("\n%d", ft_printf("%20.15d\n", -1));
+	printf("\n%d", ft_printf("%-20.15d\n", -123));
+
+	printf("\n%d", ft_printf("%020.15d\n", -2147483647 - 1));
+
+	printf("\n%d", ft_printf("%.d\n", 0));
+	printf("\n%d", ft_printf("%20.d\n", 0));
+	printf("\n%d", ft_printf("%020d\n", 0));
+	printf("\n%d", ft_printf("%-20d\n", 0));
+	printf("\n%d", ft_printf("%20d\n", 0));
+
+
+
 
 //	printf("%d\n", -2147483648);
 //	printf("%.d\n", 0);

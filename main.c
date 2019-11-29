@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:46:50 by mli               #+#    #+#             */
-/*   Updated: 2019/11/28 16:41:21 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/29 18:34:01 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,24 @@ int		main(void)
 	(void)a;
 	(void)b;
 	(void)r;
-//	(void)returned;
-//	(void)returned1;
+	(void)returned;
+	(void)returned1;
 
 //	returned1 = printf("%030d\n", -123456);
-	returned = ft_printf("%020.15d\n", -1);
-	returned1 = printf("%020.15d\n", -1);
+
+//	returned = ft_printf("%020.15d\n", -1);
+//	returned1 = printf("%020.15d\n", -1);
+
+//	printf("%20.d\n", 0);
+//	ft_printf("%20.d\n", 0);
+//	ft_printf("%.d\n", 0);
+//	ft_printf("%20.d\n", 0);
+
+//	returned = ft_printf("%d\n", -1);
+//	returned1 = printf("%d\n", -1);
+
+	returned = ft_printf("%.d\n", 0);
+	returned1 = printf("%.d\n", 0);
 
 	printf("Mine: %d\n", returned);
 	printf("True: %d\n", returned1);
