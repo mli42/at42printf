@@ -6,22 +6,15 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/28 17:28:42 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/29 11:59:38 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-unsigned long int	power(int x, int puissance)
+unsigned long int   power_of_2(int y)
 {
-	int			i;
-	long int	r;
-
-	i = 0;
-	r = 1;
-	while (i++ < puissance)
-		r *= x;
-	return (r);
+    return ((unsigned long int)1 << y);
 }
 
 int					ft_is_c(int *to_return, t_printf *args, int c)
@@ -31,7 +24,7 @@ int					ft_is_c(int *to_return, t_printf *args, int c)
 
 	i = -1;
 	flags = ' ';
-	c %= power(2, ((int)sizeof(unsigned char) * 8));
+	c %= power_of_2((int)sizeof(unsigned char) * 8);
 	if (args->flags == '-')
 		write(1, &c, 1);
 	if (args->flags == '0')
@@ -107,7 +100,7 @@ int				ft_is_x(int *to_return, t_printf *args, unsigned long int x)
 	char	*res;
 
 	if (!(res = ft_convert((args->type == 'X' ? "0123456789ABCDEF" :
-		"0123456789abcdef"), x % power(2, ((int)sizeof(unsigned int) * 8)))))
+		"0123456789abcdef"), x % power_of_2((int)sizeof(unsigned int) * 8))))
 		return (-1);
 	res_len = ft_strlen(res);
 	len = (args->precision > (res_len) ? args->precision : (res_len));
@@ -176,6 +169,8 @@ int		ft_is_di(int *to_return, t_printf *args, int d)
 	int		res_len;
 	char	*res;
 
+	if (d == 0 && args->precision == 0)
+		return (1);
 	if (!(res = ft_convert("0123456789", (unsigned long int)(d >= 0 ? d : -d))))
 		return (-1);
 	res_len = ft_strlen(res);

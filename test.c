@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:13:17 by mli               #+#    #+#             */
-/*   Updated: 2019/11/27 17:15:17 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/29 11:59:06 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ int		main(void)
 	printf("\n%d", ft_printf("%0*.*X\n", -20, -15, 2147483647));
 	printf("\n%d", ft_printf("%*.*X\n", -20, 15, -2147483647));
 	printf("\n%d", ft_printf("%*.*X\n", -20, 15, -1));
+
+	printf("\n%d", ft_printf("%*.*X\n", -20, 15, -123456));
+	printf("\n%d", ft_printf("%.*X\n", 15, -123456));
+	printf("\n%d", ft_printf("%*X\n", -20, -123456));
+	printf("\n%d", ft_printf("%*X\n", 20, -123456));
+	printf("\n%d", ft_printf("%X\n", -123456));
+	printf("\n%d", ft_printf("%x\n", -123456));
+	printf("\n%d", ft_printf("%x\n", 123456));
+	printf("\n%d", ft_printf("%.3x\n", 123456));
+	printf("\n%d", ft_printf("%3x\n", 123456));
 */
 	//				%p	 		//
 	int	a = 5;
@@ -56,6 +66,7 @@ int		main(void)
 */
 
 //	printf("%d\n", -2147483648);
+//	printf("%.d\n", 0);
 //	printf("%.0005d\n", 132);
 	return (0);
 }
