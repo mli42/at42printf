@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/30 11:54:41 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/30 12:34:28 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void				ft_is_di2(t_printf *args, int max, char *res, long int d)
 		write(1, res, res_len);
 }
 
-int					ft_is_di(int *to_return, t_printf *args, int d)
+int					ft_is_di(int *to_return, t_printf *args, long int d)
 {
 	int			len;
 	int			max;
@@ -187,15 +187,15 @@ int					ft_is_di(int *to_return, t_printf *args, int d)
 	free(res);
 	return (1);
 }
-/*
+
 int					ft_is_u(int *to_return, t_printf *args, unsigned long int u)
 {
-
-	return (0);
+	u %= power_of_2((int)sizeof(unsigned int) * 8);
+	return (ft_is_di(to_return, args, u));
 }
 
 int					ft_is_percent(int *to_return, t_printf *args)
 {
-
-	return (0);
-}*/
+	ft_is_c(to_return, args, '%');
+	return (1);
+}
