@@ -6,45 +6,17 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2019/11/30 12:22:42 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/30 13:59:16 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_is_c(int *to_return, t_printf *args, int c);
-int		ft_is_s(int *to_return, t_printf *args, char *str);
-int		ft_is_p(int *to_return, t_printf *args, void *str);
-int		ft_is_di(int *to_return, t_printf *args, int d);
-int		ft_is_u(int *to_return, t_printf *args, unsigned int u);
-int		ft_is_x(int *to_return, t_printf *args, unsigned long int x);
-int		ft_is_percent(int *to_return, t_printf *args);
-
-#include <stdio.h>
-
-int		ft_found(const char *str, int *i, int *to_return, va_list ap)
+int		ft_type(int *to_return, va_list ap, t_printf *args)
 {
-	t_printf	*args;
-	int			result;
+	int		result;
 
-	if (!(args = (t_printf *)malloc(sizeof(t_printf))))
-		return (-1);
-	(*i)++;
-	args->flags = ft_flags(str, i);
-	args->width = ft_small_atoi(str, i, ap, args);
-	args->precision = ft_precision(str, i, ap, args);
-	if ((args->type = ft_is_handled(str, i)) < 0)
-	{
-		free(args);
-		return (0);
-	}
 	result = 0;
-
-/*	printf("\nFlags:%c\n", (args->flags > 0 ? args->flags : 'N'));
-	printf("Width:%d\n", args->width);
-	printf("Precision:%d\n", args->precision);
-	printf("Convert:%c\n", args->type);*/
-
 	if (args->type == 'c')
 		result = ft_is_c(to_return, args, va_arg(ap, int));
 	else if (args->type == 's')
@@ -59,10 +31,26 @@ int		ft_found(const char *str, int *i, int *to_return, va_list ap)
 		result = ft_is_u(to_return, args, va_arg(ap, unsigned int));
 	else if (args->type == '%')
 		result = ft_is_percent(to_return, args);
-	if (result == -1)
-		*to_return = (-1);
+	return (result);
+}
+
+int		ft_found(const char *str, int *i, int *to_return, va_list ap)
+{
+	t_printf	*args;
+	int			err;
+
+	err = 1;
+	if (!(args = (t_printf *)malloc(sizeof(t_printf))))
+		return (0);
+	(*i)++;
+	args->flags = ft_flags(str, i);
+	args->width = ft_small_atoi(str, i, ap, args);
+	args->precision = ft_precision(str, i, ap, args);
+	if (((args->type = ft_is_handled(str, i)) < 0) ||
+		(ft_type(to_return, ap, args) == -1))
+		err = 0;
 	free(args);
-	return (1);
+	return (err);
 }
 
 int		ft_printf(const char *str, ...)
