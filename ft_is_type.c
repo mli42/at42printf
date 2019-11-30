@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/29 18:15:19 by mli              ###   ########.fr       */
+/*   Updated: 2019/11/30 11:54:41 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ int					ft_is_di(int *to_return, t_printf *args, int d)
 	res_len = ft_strlen(res);
 	len = (args->precision > (res_len) ? args->precision : (res_len));
 	max = (args->width > len ? args->width : len);
-	*to_return += max + (d >= 0 ? 0 : 1);
+	*to_return += max + (d < 0 && args->width < len + 1 ? 1 : 0);
 	ft_is_di2(args, (d >= 0 ? max : max - 1), res, d);
 	free(res);
 	return (1);
