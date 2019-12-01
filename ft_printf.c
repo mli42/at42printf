@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2019/12/01 16:11:25 by mli              ###   ########.fr       */
+/*   Updated: 2019/12/01 22:12:48 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,26 @@ int		ft_type(int *to_return, va_list ap, t_printf *args)
 		result = ft_is_c(to_return, args, va_arg(ap, int));
 	else if (args->type == 's')
 		result = ft_is_s(to_return, args, va_arg(ap, char *));
-	else if ((args->type == 'x') || (args->type == 'X'))
-		result = ft_is_x(to_return, args, va_arg(ap, unsigned long int));
+	else if ((args->type == 'x') || (args->type == 'X') || (args->type == 'u'))
+		result = ft_is_uxX(to_return, args, va_arg(ap, unsigned int));
 	else if (args->type == 'p')
 		result = ft_is_p(to_return, args, va_arg(ap, void *));
 	else if ((args->type == 'd') || (args->type == 'i'))
-		result = ft_is_di(to_return, args, (int)va_arg(ap, int));
-	else if (args->type == 'u')
-		result = ft_is_u(to_return, args, va_arg(ap, unsigned int));
+		result = ft_is_diuxX(to_return, args, (int)va_arg(ap, int));
 	else if (args->type == '%')
-		result = ft_is_percent(to_return, args);
+		result = ft_is_c(to_return, args, '%');
 	return (result);
 }
 
 int		ft_found(const char *str, int *i, int *to_return, va_list ap)
 {
-	t_printf	*args;
 	int			err;
+	t_printf	*args;
 
-	err = 1;
 	if (!(args = (t_printf *)malloc(sizeof(t_printf))))
 		return (0);
 	(*i)++;
+	err = 1;
 	args->flags = ft_flags(str, i);
 	args->width = ft_small_atoi(str, i, ap, args);
 	args->precision = ft_precision(str, i, ap, args);

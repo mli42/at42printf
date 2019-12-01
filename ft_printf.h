@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2019/12/01 17:23:24 by mli              ###   ########.fr       */
+/*   Updated: 2019/12/01 22:09:53 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,9 @@ int					ft_precision(const char *str, int *i,
 int					ft_is_c(int *to_return, t_printf *args, int c);
 int					ft_is_s(int *to_return, t_printf *args, char *str);
 int					ft_is_p(int *to_return, t_printf *args, void *str);
-int					ft_is_di(int *to_return, t_printf *args, long int d);
-int					ft_is_u(int *to_return, t_printf *args,
+int					ft_is_diuxX(int *to_return, t_printf *args, long int d);
+int					ft_is_uxX(int *to_return, t_printf *args,
 							unsigned long int u);
-int					ft_is_x(int *to_return, t_printf *args,
-							unsigned long int x);
-int					ft_is_percent(int *to_return, t_printf *args);
 
 char				*ft_convert(char *base, long int nbr);
 int					ft_strlen(const char *str);

@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 13:45:09 by mli               #+#    #+#             */
-/*   Updated: 2019/11/30 13:47:08 by mli              ###   ########.fr       */
+/*   Updated: 2019/12/01 22:09:47 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,5 @@ int					ft_is_p(int *to_return, t_printf *args, void *str)
 		if (write(1, "0x", 2))
 			write(1, res, len - 2);
 	free(res);
-	return (1);
-}
-
-int					ft_is_u(int *to_return, t_printf *args, unsigned long int u)
-{
-	u %= power_of_2((int)sizeof(unsigned int) * 8);
-	return (ft_is_di(to_return, args, u));
-}
-
-int					ft_is_percent(int *to_return, t_printf *args)
-{
-	ft_is_c(to_return, args, '%');
 	return (1);
 }
