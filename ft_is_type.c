@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/11/30 13:47:24 by mli              ###   ########.fr       */
+/*   Updated: 2019/12/01 16:19:37 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,12 @@ void				ft_is_di2(t_printf *args, int max, char *res, long int d)
 	if (args->flags == '-')
 		write(1, res, res_len);
 	i = 0;
+	if (flags == '0' && d < 0)
+		write(1, "-", 1);
 	while (i++ < max - len)
 		write(1, &flags, 1);
 	i = 0;
-	if (args->flags != '-' && (d >= 0 ? 1 : write(1, "-", 1)))
+	if (args->flags != '-' && (d < 0 && flags != '0' ? write(1, "-", 1) : 1))
 		while (i++ < len - res_len)
 			write(1, "0", 1);
 	if (args->flags != '-')

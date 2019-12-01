@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2019/11/30 13:59:16 by mli              ###   ########.fr       */
+/*   Updated: 2019/12/01 16:11:25 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_type(int *to_return, va_list ap, t_printf *args)
 	else if (args->type == 'p')
 		result = ft_is_p(to_return, args, va_arg(ap, void *));
 	else if ((args->type == 'd') || (args->type == 'i'))
-		result = ft_is_di(to_return, args, va_arg(ap, int));
+		result = ft_is_di(to_return, args, (int)va_arg(ap, int));
 	else if (args->type == 'u')
 		result = ft_is_u(to_return, args, va_arg(ap, unsigned int));
 	else if (args->type == '%')
