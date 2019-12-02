@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/12/01 22:14:38 by mli              ###   ########.fr       */
+/*   Updated: 2019/12/02 09:31:36 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ unsigned long int	power_of_2(int y)
 	return ((unsigned long int)1 << y);
 }
 
-void				ft_is_diuxX2(t_printf *args, int max, char *res, long int d)
+void				ft_is_diux2(t_printf *args, int max, char *res, long int d)
 {
 	int			i;
 	int			len;
@@ -45,7 +45,7 @@ void				ft_is_diuxX2(t_printf *args, int max, char *res, long int d)
 		write(1, res, res_len);
 }
 
-int					ft_is_diuxX(int *to_return, t_printf *args, long int d)
+int					ft_is_diux(int *to_return, t_printf *args, long int d)
 {
 	int			len;
 	int			max;
@@ -63,20 +63,20 @@ int					ft_is_diuxX(int *to_return, t_printf *args, long int d)
 	base = "0123456789";
 	if (args->type == 'x' || args->type == 'X')
 		base = (args->type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef");
-	if (!(res = ft_convert(base , d * (d >= 0 ? 1 : -1))))
+	if (!(res = ft_convert(base, d * (d >= 0 ? 1 : -1))))
 		return (-1);
 	res_len = ft_strlen(res);
 	len = (args->precision > (res_len) ? args->precision : (res_len));
 	max = (args->width > len ? args->width : len);
 	*to_return += max + (d < 0 && args->width < len + 1 ? 1 : 0);
-	ft_is_diuxX2(args, (d >= 0 ? max : max - 1), res, d);
+	ft_is_diux2(args, (d >= 0 ? max : max - 1), res, d);
 	free(res);
 	return (1);
 }
 
-int					ft_is_uxX(int *to_return, t_printf *args,
+int					ft_is_ux(int *to_return, t_printf *args,
 											unsigned long int u)
 {
 	u %= power_of_2((int)sizeof(unsigned int) * 8);
-	return (ft_is_diuxX(to_return, args, u));
+	return (ft_is_diux(to_return, args, u));
 }
