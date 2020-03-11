@@ -6,18 +6,18 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2019/12/02 09:31:36 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/11 18:21:59 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-unsigned long int	power_of_2(int y)
+long int	power_of_2(int y)
 {
-	return ((unsigned long int)1 << y);
+	return ((long int)1 << y);
 }
 
-void				ft_is_diux2(t_printf *args, int max, char *res, long int d)
+void		ft_is_diux2(t_printf *args, int max, char *res, long int d)
 {
 	int			i;
 	int			len;
@@ -45,7 +45,7 @@ void				ft_is_diux2(t_printf *args, int max, char *res, long int d)
 		write(1, res, res_len);
 }
 
-int					ft_is_diux(int *to_return, t_printf *args, long int d)
+int			ft_is_diux(int *to_return, t_printf *args, long int d)
 {
 	int			len;
 	int			max;
@@ -74,8 +74,7 @@ int					ft_is_diux(int *to_return, t_printf *args, long int d)
 	return (1);
 }
 
-int					ft_is_ux(int *to_return, t_printf *args,
-											unsigned long int u)
+int			ft_is_ux(int *to_return, t_printf *args, unsigned long int u)
 {
 	u %= power_of_2((int)sizeof(unsigned int) * 8);
 	return (ft_is_diux(to_return, args, u));
