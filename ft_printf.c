@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 18:25:52 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 18:39:19 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		ftpf_found_conv(const char *str, int *i, t_ftpf *ftpf, va_list ap)
 
 	(*i)++;
 	args.flags = ftpf_flags(str, i);
-	args.width = ftpf_small_atoi(str, i, ap, &args);
+	args.width = ftpf_va_atoi(str, i, ap, &args);
 	args.precision = ftpf_precision(str, i, ap, &args);
 	if (((args.type = ftpf_is_handled(str, i)) < 0) ||
 		(ftpf_type(ftpf, ap, &args) == -1))

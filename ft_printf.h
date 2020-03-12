@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 18:26:08 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 18:37:46 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			ft_printf(const char *str, ...);
 
 long int	power_of_2(int y);
 int			ftpf_is_handled(const char *str, int *i);
-int			ftpf_small_atoi(const char *str, int *i, va_list ap, t_printf *args);
+int			ftpf_va_atoi(const char *str, int *i, va_list ap, t_printf *args);
 char		ftpf_flags(const char *str, int *i);
 int			ftpf_precision(const char *str, int *i, va_list ap, t_printf *args);
 
