@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 12:31:47 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 14:44:41 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,62 +14,51 @@
 
 long int	power_of_2(int y)
 {
-	return ((long int)1 << y);
+	return (1L << y);
 }
 
-void		ft_is_diux2(t_printf *args, int max, char *res, long int d)
+void		ft_is_diux2(t_printf *args, t_ftpf *ftpf, char *res, long int d)
 {
-	int			i;
 	int			len;
+	int			max;
 	char		flags;
 	const int	res_len = ft_strlen(res);
 
-	i = 0;
-	len = (args->precision > (res_len) ? args->precision : (res_len));
+	len = (args->precision > res_len ? args->precision : res_len);
+	max = (args->width > len ? args->width : len) - (d < 0 ? 1 : 0);
 	flags = (args->precision >= 0 || args->flags != '0' ? ' ' : '0');
-	if (args->flags == '-' && (d >= 0 ? 1 : write(1, "-", 1)))
-		while (i++ < len - res_len)
-			write(1, "0", 1);
 	if (args->flags == '-')
-		write(1, res, res_len);
-	i = 0;
+	{
+		if (d < 0)
+			ftpf_write_n_char(ftpf, '-', 1);
+		ftpf_write_n_char(ftpf, '0', len - res_len);
+		ftpf_write(ftpf, res, res_len);
+	}
 	if (flags == '0' && d < 0)
-		write(1, "-", 1);
-	while (i++ < max - len)
-		write(1, &flags, 1);
-	i = 0;
-	if (args->flags != '-' && (d < 0 && flags != '0' ? write(1, "-", 1) : 1))
-		while (i++ < len - res_len)
-			write(1, "0", 1);
+		ftpf_write_n_char(ftpf, '-', 1);
+	ftpf_write_n_char(ftpf, flags, max - len);
 	if (args->flags != '-')
-		write(1, res, res_len);
+	{
+		if (d < 0 && flags != '0')
+			ftpf_write_n_char(ftpf, '-', 1);
+		ftpf_write_n_char(ftpf, '0', len - res_len);
+		ftpf_write(ftpf, res, res_len);
+	}
 }
 
 int			ft_is_diux(t_ftpf *ftpf, t_printf *args, long int d)
 {
-	int			len;
-	int			max;
-	int			res_len;
 	char		*res;
 	char		*base;
 
-	len = 0;
 	if (d == 0 && args->precision == 0)
-		while (len++ < args->width)
-			if (write(1, " ", 1) && ++(ftpf->res) && len == args->width)
-				return (1);
-	if (d == 0 && args->precision == 0)
-		return (1);
+		return (ftpf_write_n_char(ftpf, ' ', args->width));
 	base = "0123456789";
 	if (args->type == 'x' || args->type == 'X')
 		base = (args->type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef");
 	if (!(res = ft_convert(base, d * (d >= 0 ? 1 : -1))))
 		return (-1);
-	res_len = ft_strlen(res);
-	len = (args->precision > (res_len) ? args->precision : (res_len));
-	max = (args->width > len ? args->width : len);
-	ftpf->res += max + (d < 0 && args->width < len + 1 ? 1 : 0);
-	ft_is_diux2(args, (d >= 0 ? max : max - 1), res, d);
+	ft_is_diux2(args, ftpf, res, d);
 	free(res);
 	return (1);
 }

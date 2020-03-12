@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 12:44:57 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 14:33:02 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			ft_is_ux(t_ftpf *ftpf, t_printf *args, unsigned long int u);
 
 char		*ft_convert(char *base, long int nbr);
 
-void		ftpf_write(t_ftpf *ftpf, const char *str, size_t nb);
-void		ftpf_write_n_char(t_ftpf *ftpf, const char c, size_t nb);
+int			ftpf_write(t_ftpf *ftpf, const char *str, int nb);
+int			ftpf_write_n_char(t_ftpf *ftpf, const char c, int nb);
 
 #endif

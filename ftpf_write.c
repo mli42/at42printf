@@ -6,25 +6,24 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:32:37 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 12:44:13 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 14:33:35 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ftpf_write(t_ftpf *ftpf, const char *str, size_t nb)
+int		ftpf_write(t_ftpf *ftpf, const char *str, int nb)
 {
 	ftpf->res += write(ftpf->fd, str, nb);
+	return (1);
 }
 
-void	ftpf_write_n_char(t_ftpf *ftpf, const char c, size_t nb)
+int		ftpf_write_n_char(t_ftpf *ftpf, const char c, int nb)
 {
-	size_t i;
+	int i;
 
-	i = 0;
-	while (i < nb)
-	{
+	i = -1;
+	while (++i < nb)
 		ftpf->res += write(ftpf->fd, &c, 1);
-		i++;
-	}
+	return (1);
 }
