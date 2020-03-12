@@ -6,40 +6,32 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 13:45:09 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 12:31:25 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 15:25:41 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int					ft_is_c(t_ftpf *ftpf, t_printf *args, int c)
+int			ft_is_c(t_ftpf *ftpf, t_printf *args, int c)
 {
-	int		i;
 	char	flags;
 
-	i = -1;
-	flags = ' ';
+	flags = (args->flags == '0' ? '0' : ' ');
 	c %= power_of_2((int)sizeof(unsigned char) * 8);
 	if (args->flags == '-')
-		write(1, &c, 1);
-	if (args->flags == '0')
-		flags = '0';
-	while (++i < args->width - 1)
-		write(1, &flags, 1);
+		ftpf_write(ftpf, &c, 1);
+	ftpf_write_n_char(ftpf, flags, args->width - 1);
 	if (args->flags != '-')
-		write(1, &c, 1);
-	ftpf->res += i + 1;
+		ftpf_write(ftpf, &c, 1);
 	return (1);
 }
 
-int					ft_is_s(t_ftpf *ftpf, t_printf *args, char *str)
+int			ft_is_s(t_ftpf *ftpf, t_printf *args, char *str)
 {
-	int		i;
 	int		len;
 	int		max;
 	char	flags;
 
-	i = 0;
 	len = 0;
 	flags = (args->flags == '0' ? '0' : ' ');
 	if (!str)
@@ -48,18 +40,15 @@ int					ft_is_s(t_ftpf *ftpf, t_printf *args, char *str)
 		len++;
 	max = (args->width > len ? args->width : len);
 	if (args->flags == '-')
-		write(1, &str[0], len);
-	while (i++ < max - len)
-		write(1, &flags, 1);
+		ftpf_write(ftpf, str, len);
+	ftpf_write_n_char(ftpf, flags, max - len);
 	if (args->flags != '-')
-		write(1, &str[0], len);
-	ftpf->res += max;
+		ftpf_write(ftpf, str, len);
 	return (1);
 }
 
-int					ft_is_p(t_ftpf *ftpf, t_printf *args, void *str)
+int			ft_is_p(t_ftpf *ftpf, t_printf *args, void *str)
 {
-	int		i;
 	int		len;
 	int		max;
 	char	*res;
@@ -68,16 +57,17 @@ int					ft_is_p(t_ftpf *ftpf, t_printf *args, void *str)
 		return (-1);
 	len = ft_strlen(res) + 2;
 	max = (args->width > len ? args->width : len);
-	ftpf->res += max;
 	if (args->flags == '-')
-		if (write(1, "0x", 2))
-			write(1, res, len - 2);
-	i = 0;
-	while (i++ < max - len)
-		write(1, " ", 1);
+	{
+		ftpf_write(ftpf, "0x", 2);
+		ftpf_write(ftpf, res, len - 2);
+	}
+	ftpf_write_n_char(ftpf, ' ', max - len);
 	if (args->flags != '-')
-		if (write(1, "0x", 2))
-			write(1, res, len - 2);
+	{
+		ftpf_write(ftpf, "0x", 2);
+		ftpf_write(ftpf, res, len - 2);
+	}
 	free(res);
 	return (1);
 }
