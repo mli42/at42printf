@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftpf_struct.h                                      :+:      :+:    :+:   */
+/*   ftpf_write.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 17:23:08 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 12:09:06 by mli              ###   ########.fr       */
+/*   Created: 2020/03/12 12:32:37 by mli               #+#    #+#             */
+/*   Updated: 2020/03/12 12:44:13 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FTPF_STRUCT_H
-# define FTPF_STRUCT_H
+#include "ft_printf.h"
 
-typedef struct	s_printf
+void	ftpf_write(t_ftpf *ftpf, const char *str, size_t nb)
 {
-	char	flags;
-	int		width;
-	int		precision;
-	char	type;
-}				t_printf;
+	ftpf->res += write(ftpf->fd, str, nb);
+}
 
-typedef struct	s_ftpf
+void	ftpf_write_n_char(t_ftpf *ftpf, const char c, size_t nb)
 {
-	int fd;
-	int res;
-}				t_ftpf;
+	size_t i;
 
-#endif
+	i = 0;
+	while (i < nb)
+	{
+		ftpf->res += write(ftpf->fd, &c, 1);
+		i++;
+	}
+}

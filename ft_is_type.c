@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2020/03/11 18:21:59 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 12:31:47 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		ft_is_diux2(t_printf *args, int max, char *res, long int d)
 		write(1, res, res_len);
 }
 
-int			ft_is_diux(int *to_return, t_printf *args, long int d)
+int			ft_is_diux(t_ftpf *ftpf, t_printf *args, long int d)
 {
 	int			len;
 	int			max;
@@ -56,7 +56,7 @@ int			ft_is_diux(int *to_return, t_printf *args, long int d)
 	len = 0;
 	if (d == 0 && args->precision == 0)
 		while (len++ < args->width)
-			if (write(1, " ", 1) && ++(*to_return) && len == args->width)
+			if (write(1, " ", 1) && ++(ftpf->res) && len == args->width)
 				return (1);
 	if (d == 0 && args->precision == 0)
 		return (1);
@@ -68,14 +68,14 @@ int			ft_is_diux(int *to_return, t_printf *args, long int d)
 	res_len = ft_strlen(res);
 	len = (args->precision > (res_len) ? args->precision : (res_len));
 	max = (args->width > len ? args->width : len);
-	*to_return += max + (d < 0 && args->width < len + 1 ? 1 : 0);
+	ftpf->res += max + (d < 0 && args->width < len + 1 ? 1 : 0);
 	ft_is_diux2(args, (d >= 0 ? max : max - 1), res, d);
 	free(res);
 	return (1);
 }
 
-int			ft_is_ux(int *to_return, t_printf *args, unsigned long int u)
+int			ft_is_ux(t_ftpf *ftpf, t_printf *args, unsigned long int u)
 {
 	u %= power_of_2((int)sizeof(unsigned int) * 8);
-	return (ft_is_diux(to_return, args, u));
+	return (ft_is_diux(ftpf, args, u));
 }
