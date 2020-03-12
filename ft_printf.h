@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 14:56:08 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 16:39:21 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			ft_is_p(t_ftpf *ftpf, t_printf *args, void *str);
 int			ft_is_diux(t_ftpf *ftpf, t_printf *args, long int d);
 int			ft_is_ux(t_ftpf *ftpf, t_printf *args, unsigned long int u);
 
-char		*ft_convert(char *base, long int nbr);
+char		*ft_itoa_base_lpos(char *base, long int nbr);
 
 int			ftpf_write(t_ftpf *ftpf, const void *str, int nb);
 int			ftpf_write_n_char(t_ftpf *ftpf, const int c, int nb);

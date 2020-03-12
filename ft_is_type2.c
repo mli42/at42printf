@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 13:45:09 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 15:25:41 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 16:41:50 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			ft_is_p(t_ftpf *ftpf, t_printf *args, void *str)
 	int		max;
 	char	*res;
 
-	if (!(res = ft_convert("0123456789abcdef", (unsigned long int)str)))
+	if (!(res = ft_itoa_base_lpos("0123456789abcdef", (unsigned long int)str)))
 		return (-1);
 	len = ft_strlen(res) + 2;
 	max = (args->width > len ? args->width : len);

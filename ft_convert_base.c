@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_base2.c                                 :+:      :+:    :+:   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 23:33:41 by mli               #+#    #+#             */
-/*   Updated: 2019/11/28 11:55:27 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 15:49:28 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		result_size(long int nb, long int base_len)
+int		ft_nbrlen_base(long int nb, int base_len)
 {
 	int i;
 
@@ -22,42 +22,23 @@ int		result_size(long int nb, long int base_len)
 		nb /= base_len;
 		i++;
 	}
-	return (i + 1);
+	return (i);
 }
 
-void	ft_swap(char *r, int max)
+char	*ft_itoa_base_lpos(char *base, long int nbr)
 {
-	int i;
-	int swap;
-
-	i = 0;
-	while (i < max)
-	{
-		swap = r[i];
-		r[i++] = r[max];
-		r[max--] = swap;
-	}
-}
-
-char	*ft_convert(char *base, long int nbr)
-{
-	int			i;
 	int			size;
 	long int	base_len;
 	char		*result;
 
-	i = 0;
 	base_len = ft_strlen(base);
-	size = result_size(nbr, base_len);
-	if (!(result = (char *)malloc(sizeof(char) * size)))
+	size = ft_nbrlen_base(nbr, base_len);
+	if (!(result = (char *)ft_memalloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	while (nbr >= base_len)
+	while (--size >= 0)
 	{
-		result[i++] = base[nbr % base_len];
+		result[size] = base[nbr % base_len];
 		nbr /= base_len;
 	}
-	result[i] = base[nbr % base_len];
-	result[i + 1] = '\0';
-	ft_swap(result, i);
 	return (result);
 }
