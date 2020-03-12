@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_type.c                                       :+:      :+:    :+:   */
+/*   ftpf_diux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 16:38:34 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 18:26:37 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long int	power_of_2(int y)
 	return (1L << y);
 }
 
-void		ft_is_diux2(t_printf *args, t_ftpf *ftpf, char *res, long int d)
+void		ftpf_is_diux2(t_printf *args, t_ftpf *ftpf, char *res, long int d)
 {
 	int			len;
 	int			max;
@@ -46,7 +46,7 @@ void		ft_is_diux2(t_printf *args, t_ftpf *ftpf, char *res, long int d)
 	}
 }
 
-int			ft_is_diux(t_ftpf *ftpf, t_printf *args, long int d)
+int			ftpf_is_diux(t_ftpf *ftpf, t_printf *args, long int d)
 {
 	char		*res;
 	char		*base;
@@ -58,13 +58,13 @@ int			ft_is_diux(t_ftpf *ftpf, t_printf *args, long int d)
 		base = (args->type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef");
 	if (!(res = ft_itoa_base_lpos(base, d * (d >= 0 ? 1 : -1))))
 		return (-1);
-	ft_is_diux2(args, ftpf, res, d);
+	ftpf_is_diux2(args, ftpf, res, d);
 	free(res);
 	return (1);
 }
 
-int			ft_is_ux(t_ftpf *ftpf, t_printf *args, unsigned long int u)
+int			ftpf_is_ux(t_ftpf *ftpf, t_printf *args, unsigned long int u)
 {
 	u %= power_of_2((int)sizeof(unsigned int) * 8);
-	return (ft_is_diux(ftpf, args, u));
+	return (ftpf_is_diux(ftpf, args, u));
 }

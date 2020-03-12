@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_argsfill.c                                      :+:      :+:    :+:   */
+/*   ftpf_argsfill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 17:17:59 by mli               #+#    #+#             */
-/*   Updated: 2019/11/27 10:37:50 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 18:25:10 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_is_handled(const char *str, int *i)
+int		ftpf_is_handled(const char *str, int *i)
 {
 	int		k;
 	char	*can_convert;
@@ -28,7 +28,7 @@ int		ft_is_handled(const char *str, int *i)
 	return (-1);
 }
 
-int		ft_small_atoi(const char *str, int *i, va_list ap, t_printf *args)
+int		ftpf_small_atoi(const char *str, int *i, va_list ap, t_printf *args)
 {
 	long int result;
 
@@ -48,7 +48,7 @@ int		ft_small_atoi(const char *str, int *i, va_list ap, t_printf *args)
 	return (result);
 }
 
-char	ft_flags(const char *str, int *i)
+char	ftpf_flags(const char *str, int *i)
 {
 	char	result;
 
@@ -62,7 +62,7 @@ char	ft_flags(const char *str, int *i)
 	return (result);
 }
 
-int		ft_precision(const char *str, int *i, va_list ap, t_printf *args)
+int		ftpf_precision(const char *str, int *i, va_list ap, t_printf *args)
 {
 	int result;
 
@@ -76,7 +76,7 @@ int		ft_precision(const char *str, int *i, va_list ap, t_printf *args)
 			if ((result = va_arg(ap, int)) < 0)
 				result = -1;
 		}
-		else if ((result = ft_small_atoi(str, i, ap, args)) == -1)
+		else if ((result = ftpf_small_atoi(str, i, ap, args)) == -1)
 			result = 0;
 	}
 	return (result);

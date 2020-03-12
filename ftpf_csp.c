@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_type2.c                                      :+:      :+:    :+:   */
+/*   ftpf_csp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 13:45:09 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 16:41:50 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 18:26:19 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_is_c(t_ftpf *ftpf, t_printf *args, int c)
+int			ftpf_is_c(t_ftpf *ftpf, t_printf *args, int c)
 {
 	char	flags;
 
@@ -26,7 +26,7 @@ int			ft_is_c(t_ftpf *ftpf, t_printf *args, int c)
 	return (1);
 }
 
-int			ft_is_s(t_ftpf *ftpf, t_printf *args, char *str)
+int			ftpf_is_s(t_ftpf *ftpf, t_printf *args, char *str)
 {
 	int		len;
 	int		max;
@@ -47,7 +47,7 @@ int			ft_is_s(t_ftpf *ftpf, t_printf *args, char *str)
 	return (1);
 }
 
-int			ft_is_p(t_ftpf *ftpf, t_printf *args, void *str)
+int			ftpf_is_p(t_ftpf *ftpf, t_printf *args, void *str)
 {
 	int		len;
 	int		max;
