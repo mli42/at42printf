@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2020/03/11 18:28:47 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/12 11:41:32 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include "ftpf_struct.h"
+# include "meine_liebe/libft.h"
 
 int			ft_printf(const char *str, ...);
 
@@ -33,6 +34,5 @@ int			ft_is_diux(int *to_return, t_printf *args, long int d);
 int			ft_is_ux(int *to_return, t_printf *args, unsigned long int u);
 
 char		*ft_convert(char *base, long int nbr);
-int			ft_strlen(const char *str);
 
 #endif
