@@ -6,7 +6,7 @@
 #    By: mli <mli@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 11:11:01 by mli               #+#    #+#              #
-#    Updated: 2020/03/14 18:14:06 by mli              ###   ########.fr        #
+#    Updated: 2020/03/14 22:06:10 by mli              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIBFT_FILES = ft_memset.c ft_bzero.c ft_strlen.c ft_toupper.c ft_tolower.c \
 LIBFT_SRCS = ${addprefix ./meine_liebe/, ${LIBFT_FILES}}
 
 SRCS_FILES = ft_printf.c ftpf_argsfill.c ft_itoa_lbase.c ftpf_diux.c \
-			 ftpf_csp.c ftpf_write.c \
+			 ftpf_csp.c ftpf_write.c ftpf_get_special.c \
 			 ${LIBFT_SRCS}
 
 OBJS = ${SRCS_FILES:.c=.o}

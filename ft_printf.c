@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2020/03/14 19:54:50 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/14 23:58:50 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int		ft_printf(const char *str, ...)
 			j++;
 		}
 		if (j)
-			ftpf.res += write(1, &str[i - j], j);
+			ftpf_write(&ftpf, &str[i - j], j);
 		if ((str[i] == '%' && !ftpf_found_conv(str, &i, &ftpf, ap)) ||
-			(str[i] == '{' && 0))
+			(str[i] == '{' && !ftpf_get_special(str, &i, &ftpf, ap)))
 			ftpf.res = -1;
 	}
 	va_end(ap);
