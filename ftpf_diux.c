@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:12:15 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 18:26:37 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/14 18:32:45 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			ftpf_is_diux(t_ftpf *ftpf, t_printf *args, long int d)
 	base = "0123456789";
 	if (args->type == 'x' || args->type == 'X')
 		base = (args->type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef");
-	if (!(res = ft_itoa_base_lpos(base, d * (d >= 0 ? 1 : -1))))
+	if (!(res = ft_itoa_lbase(base, d * (d >= 0 ? 1 : -1))))
 		return (-1);
 	ftpf_is_diux2(args, ftpf, res, d);
 	free(res);
