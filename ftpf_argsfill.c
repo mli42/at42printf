@@ -6,26 +6,18 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 17:17:59 by mli               #+#    #+#             */
-/*   Updated: 2020/03/12 18:39:09 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/14 19:49:58 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ftpf_is_handled(const char *str, int *i)
+int		ftpf_is_handled(const char *handled, const char c, int *i)
 {
-	int		k;
-	char	*can_convert;
-
-	k = -1;
-	can_convert = "cspdiuxX%";
-	while (can_convert[++k])
-		if (can_convert[k] == str[*i])
-		{
-			(*i)++;
-			return (can_convert[k]);
-		}
-	return (-1);
+	if (ft_strchr(handled, c) == NULL)
+		return (-1);
+	(*i)++;
+	return (c);
 }
 
 int		ftpf_va_atoi(const char *str, int *i, va_list ap, t_printf *args)
