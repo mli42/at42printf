@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2020/03/14 23:58:50 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/16 00:15:10 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,21 @@ int		ftpf_type(t_ftpf *ftpf, va_list ap, t_printf *args)
 		result = ftpf_is_diux(ftpf, args, (int)va_arg(ap, int));
 	else if (args->type == '%')
 		result = ftpf_is_c(ftpf, args, '%');
+	else if (args->type == 'f')
+		result = ftpf_custom_lf(ftpf, args, va_arg(ap, double));
 	return (result);
 }
 
 int		ftpf_found_conv(const char *str, int *i, t_ftpf *ftpf, va_list ap)
 {
 	t_printf	args;
+	const char	*handled = "cspdiuxXf%";
 
 	(*i)++;
 	args.flags = ftpf_flags(str, i);
 	args.width = ftpf_va_atoi(str, i, ap, &args);
 	args.precision = ftpf_precision(str, i, ap, &args);
-	if ((args.type = ftpf_is_handled("cspdiuxX%", str[*i], i))  == -1 ||
+	if ((args.type = ftpf_is_handled(handled, str[*i], i))  == -1 ||
 		ftpf_type(ftpf, ap, &args) == -1)
 		return (0);
 	return (1);
