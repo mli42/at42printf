@@ -6,7 +6,7 @@
 /*   By: mli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 12:34:27 by mli               #+#    #+#             */
-/*   Updated: 2020/01/28 10:49:36 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/17 17:17:12 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char			*ft_strtrim(char const *s1, char const *set);
 
 char			*ft_strjoin(char const *s1, char const *s2);
 char			**ft_split(char const *s, char c);
-char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 void			ft_putchar_fd(char c, int fd);
@@ -88,5 +87,11 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 
 void			ft_free(void **ptr);
 int				ft_atoi_ptr(const char *str, int *i);
+int				ft_nbrlen_base(long int nb, int base_len);
+int				ft_nbrlen(long int nb);
+char			*ft_itoa_lbase(const char *base, long int nbr);
+
+double			ft_abs_lf(double nbr);
+long int		ft_abs_ld(long int nb);
 
 #endif

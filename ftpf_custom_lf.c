@@ -6,17 +6,11 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 16:42:04 by mli               #+#    #+#             */
-/*   Updated: 2020/03/16 00:10:27 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/17 16:53:11 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-int		ft_nbrlen_base(long int nb, int base_len);
-
-int		ft_nbrlen(long int nb)
-{
-	return (ft_nbrlen_base(nb, 10));
-}
 
 double	ft_decimal_part(double nb)
 {

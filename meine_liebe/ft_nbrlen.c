@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 14:54:53 by mli               #+#    #+#             */
-/*   Updated: 2020/03/17 16:44:51 by mli              ###   ########.fr       */
+/*   Created: 2020/03/14 14:45:12 by mli               #+#    #+#             */
+/*   Updated: 2020/03/14 16:04:46 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_bzero(void *s, size_t n)
+int		ft_nbrlen_base(long int nb, int base_len)
 {
-	if (n > 0)
-		ft_memset(s, 0, n);
+	int size;
+
+	size = 0;
+	if (nb <= 0)
+		size++;
+	while (nb != 0)
+	{
+		nb /= base_len;
+		size++;
+	}
+	return (size);
+}
+
+int		ft_nbrlen(long int nb)
+{
+	return (ft_nbrlen_base(nb, 10));
 }

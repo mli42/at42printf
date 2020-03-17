@@ -6,26 +6,11 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 23:33:41 by mli               #+#    #+#             */
-/*   Updated: 2020/03/14 18:13:44 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/17 17:18:16 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		ft_nbrlen_base(long int nb, int base_len)
-{
-	int size;
-
-	size = 0;
-	if (nb <= 0)
-		size++;
-	while (nb != 0)
-	{
-		nb /= base_len;
-		size++;
-	}
-	return (size);
-}
+#include "libft.h"
 
 char	*ft_itoa_lbase(const char *base, long int nbr)
 {
