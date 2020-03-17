@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:09:39 by mli               #+#    #+#             */
-/*   Updated: 2020/03/16 00:15:10 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/17 15:40:39 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ int		ftpf_type(t_ftpf *ftpf, va_list ap, t_printf *args)
 		result = ftpf_is_c(ftpf, args, '%');
 	else if (args->type == 'f')
 		result = ftpf_custom_lf(ftpf, args, va_arg(ap, double));
+	else if (args->type == 'b')
+		result = ftpf_printbits(ftpf, va_arg(ap, long long int), args->width);
 	return (result);
 }
 
 int		ftpf_found_conv(const char *str, int *i, t_ftpf *ftpf, va_list ap)
 {
 	t_printf	args;
-	const char	*handled = "cspdiuxXf%";
+	const char	*handled = "cspdiuxXfb%";
 
 	(*i)++;
 	args.flags = ftpf_flags(str, i);

@@ -6,7 +6,7 @@
 /*   By: mli <mli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:10:00 by mli               #+#    #+#             */
-/*   Updated: 2020/03/15 19:24:12 by mli              ###   ########.fr       */
+/*   Updated: 2020/03/17 15:39:05 by mli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int			ftpf_write_n_char(t_ftpf *ftpf, const int c, int nb);
 int			ftpf_get_special(const char *str, int *i, t_ftpf *ftpf, va_list ap);
 
 int			ftpf_custom_lf(t_ftpf *ftpf, t_printf *args, double d);
+int			ftpf_printbits(t_ftpf *ftpf, long long int nbr, int size);
 
 #endif
